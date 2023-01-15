@@ -14,6 +14,8 @@ export function Post({author, content, publishedAt}) {
 const [comments, setComments] = useState(['Test comment content'])
 const [newComment, setNewComment] = useState ('')
 
+const newCommentIsEmpty = newComment.length === 0;
+
 function handleCreateNewComment() {
   event.preventDefault()
   setComments([...comments, newComment ])
@@ -80,7 +82,11 @@ function deleteComment(commentDelete) {
         />
 
         <footer>
-          <button type="submit">Publicar</button>
+          <button
+            disabled={newCommentIsEmpty} 
+            type="submit">
+              Publicar
+          </button>
         </footer>
       </form>
 
