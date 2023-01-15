@@ -11,10 +11,19 @@ import { useState } from 'react';
 
 export function Post({author, content, publishedAt}) {
 
-const [comments, setComments] = useState([1,2])
+const [comments, setComments] = useState(['Test comment content'])
+const [newComment, setNewComment] = useState ('')
+
 function handleCreateNewComment() {
   event.preventDefault()
-  setComments([...comments, comments.length+1 ])
+  setComments([...comments, newComment ])
+  setNewComment('')
+
+  
+}
+
+function handleNewCommentChange() {
+ setNewComment(event.target.value)
 
 }
 
@@ -58,7 +67,10 @@ function handleCreateNewComment() {
         <strong>Deixe seu feedback</strong>
 
         <textarea
+          name='comment'
+          value={newComment}
           placeholder="Deixe um comentário"
+          onChange={handleNewCommentChange}
         />
 
         <footer>
@@ -68,7 +80,7 @@ function handleCreateNewComment() {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment />
+          return <Comment content={comment}/>
         })}
       </div>
     </article>
