@@ -26,6 +26,9 @@ function handleNewCommentChange() {
  setNewComment(event.target.value)
 
 }
+function deleteComment(comment) {
+  console.log(`Deletar comentário ${comment} `);
+}
 
 
   const publishedDateFormatted = format(publishedAt,"d 'de' LLLL 'às' HH:mm'h'",{locale: ptBR} )
@@ -80,7 +83,7 @@ function handleNewCommentChange() {
 
       <div className={styles.commentList}>
         {comments.map(comment => {
-          return <Comment key={comment} content={comment}/>
+          return <Comment onDeleteComment={deleteComment} key={comment} content={comment}/>
         })}
       </div>
     </article>
